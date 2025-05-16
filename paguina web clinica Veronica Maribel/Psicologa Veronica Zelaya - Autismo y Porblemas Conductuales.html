@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página web básica en HTML5">
+    <title>Psicóloga Verónica Zelaya - Autismo y Problemas Conductuales</title>
+    <link rel="ICON" href="logo de clinica-Photoroom.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            position: relative; /* Necesario para el pseudo-elemento */
+            overflow-x: hidden; /* Evita desplazamiento horizontal */
+        }
+
+        body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, #512e68, #ecc6ff, #512e68);
+    background-size: 200% 200%;
+    z-index: -10;
+    animation: gradientScroll 7s ease infinite;
+    opacity: 0.8; /* Ajusta la opacidad para que no opaque el contenido */
+    mix-blend-mode: overlay; /* Combina colores con el fondo */
+}
+
+@keyframes gradientScroll {
+    10% { background-position: 10% 70%; }
+    50% { background-position: 100% 70%; }
+    100% { background-position: 0% 70%; }
+}
+
+
+        /* NAVBAR */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #fff;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .navbar img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .menu-container {
+            position: relative;
+        }
+
+        .menu-button {
+            background: #AD88C6;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .menu-button:hover {
+            background: #9467B3;
+        }
+
+        .menu-items {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-items a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+            transition: background 0.3s ease;
+        }
+
+        .menu-items a:hover {
+            background: #f0f0f0;
+        }
+
+        .menu-container.open .menu-items {
+            display: block;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(173, 136, 198, 0.7), rgba(173, 136, 198, 0.7)), url('tu-imagen-de-fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            height: 100vh;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .hero a {
+            text-decoration: none;
+            color: white;
+            background: #826397;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .hero a:hover {
+            background: #9467B3;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: #AD88C6;
+            margin-bottom: 20px;
+        }
+
+        section p {
+            font-size: 1rem;
+            margin: 0 auto;
+            max-width: 800px;
+            color: #555;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #7469B6;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* BUTTON */
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: white;
+            background: #AD88C6;
+            padding: 10px 20px;
+            font-size: 10rem;
+            transition: background 0.3s ease;
+
+        }
+
+        .btn:hover {
+            background: #bd72f0;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        .texto-en-la-esquina{
+            position: absolute;
+            top: 17px;
+            left: 59px;
+            font-size: 14px;
+            background-color: rgba(0, 0, 0, 0,5);
+            color: rgb(0, 0, 0);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font: italic;
+
+        }
+                /* RESET */
+                * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #AD88C6, #7469B6);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .form-container p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-container button {
+            background: #AD88C6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 100%;
+        }
+
+        .form-container button:hover {
+            background: #9467B3;
+        }
+
+        .form-container .signin {
+            margin-top: 19px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .form-container .signin a {
+            color: #AD88C6;
+            text-decoration: none;
+        }
+
+        .form-container .signin a:hover {
+            text-decoration: underline;
+        }
+        
+        section {
+        padding: 135px 20px;
+        margin-bottom: 40px;
+        border-bottom: 2px solid #ddd; /* Línea divisoria entre secciones */
+        border-radius: 9px; /* Bordes redondeados */
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+        text-align: center;
+    }
+
+    section:nth-child(odd) {
+        background-color: #f4f4f4;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    section:nth-child(even) {
+        background-color: #ffffff;
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más fuerte */
+    }
+
+    section:nth-child(odd) {
+        background-color: #f4f4f4; /* Fondo claro para secciones impares */
+    }
+
+    section:nth-child(even) {
+        background-color: #ffffff; /* Fondo blanco para secciones pares */
+    }
+
+    /* Títulos destacados */
+    section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #AD88C6;
+        position: relative;
+    }
+
+    section h2::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 4px;
+        background-color: #AD88C6;
+        margin: 10px auto 0;
+        border-radius: 2px;
+    }
+
+    /* Estilo del botón */
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: white;
+    background: #AD88C6;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background: #9467B3;
+    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+}
+
+.animacion{
+    size-adjust: 200px;
+}
+
+.obligatorio{
+
+text-transform: 20px;
+color: red;
+}
+
+section:hover{
+    transform: scale(1.03);
+    transition: 0.5s;
+    /*overflow: hidden;*//*para poner imagenes atras del los cuadros*/
+}
+/*div{
+    overflow: auto;                                                      --------contenido para crear el citio de inicio de seccion 
+     <div class="form-container">
+        <h2>Crear una Cuenta</h2>
+        <p>Regístrate para acceder a nuestros servicios</p>
+        <form action="procesar-registro.php" method="POST">
+            <input type="text" name="nombre" placeholder="Nombre completo *" required>
+            <input type="email" name="correo" placeholder="Correo electrónico" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <input type="password" name="confirm_password" placeholder="Confirmar contraseña" required>
+            <button type="submit">Registrarse</button>
+        </form>
+        <div class="signin">
+            ¿Ya tienes una cuenta? <a href="login.html">Inicia sesión</a>
+        </div>
+    </div>
+}*/
+    </style>
+
+</head>
+<body> 
+    <!-- HEADER -->
+    <header>
+        <div class="navbar">
+          <a href="Psicologa Veronica Zelaya - Autismo y Porblemas Conductuales.html"> <img src="logo de clinica-Photoroom.ico" alt="logo"></a>
+            <h1 class="texto-en-la-esquina">Psicologa Veronica Zelaya - Autismo y Porblemas Conductuales</h1>
+            <div class="menu-container">
+                <button class="menu-button">Menú</button>
+                <div class="menu-items">
+                    <a href="Psicologa Veronica Zelaya - Autismo y Porblemas Conductuales.html">Inicio</a>
+                    <a href="sobre mi.html">Sobre mí</a>
+                    <a href="contactanos.html">Contacto</a>
+                    <a href="Servicio.html">Servicios</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>Psicóloga Verónica Zelaya</h1>
+        <p>Especialista en Autismo y Problemas Conductuales</p>
+        <a href="contactanos.html" class="btn">¡Contáctame!</a>
+    </div>
+
+    <!-- SECTIONS -->
+    <section id="sobre-mi">
+        <h2>Sobre mí</h2>
+        <p>Psicóloga con experiencia en autismo y atención a niños, adolescentes y adultos.</p>
+        <a href="sobre mi.html" class="btn">Ver más...</a>
+    </section>
+
+    <section id="servicios">
+        <h2>Servicios</h2>
+        <p>Atención integral en salud mental, psicoterapia y orientación vocacional.</p>
+        <a href="Servicio.html" class="btn">Ver más...</a>
+    </section>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <p>Reserva tu cita y recibe la atención personalizada que necesitas.</p>
+        <a href="contactanos.html" class="btn">Ver más...</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 Psicóloga Verónica Zelaya. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const menuButton = document.querySelector('.menu-button');
+        const menuContainer = document.querySelector('.menu-container');
+
+        menuButton.addEventListener('click', () => {
+            menuContainer.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

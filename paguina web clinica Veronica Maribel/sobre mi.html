@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página web básica en HTML5">
+    <title>Psicóloga Verónica Zelaya - Autismo y Problemas Conductuales</title>
+    <link rel="icon" href="logo de clinica-Photoroom.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden; /* Evita scroll horizontal */
+            position: relative; /* Necesario para el pseudo-elemento */
+        }
+
+        body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, #8f60af, #be9acf, #9b55ca);
+    background-size: 200% 200%;
+    z-index: -10;
+    animation: gradientScroll 7s ease infinite;
+    opacity: 0.8; /* Ajusta la opacidad para que no opaque el contenido */
+    mix-blend-mode: overlay; /* Combina colores con el fondo */
+}
+
+@keyframes gradientScroll {
+    10% { background-position: 10% 70%; }
+    50% { background-position: 100% 70%; }
+    100% { background-position: 0% 70%; }
+}
+
+        /* NAVBAR */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #fff;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .navbar img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .menu-container {
+            position: relative;
+        }
+
+        .menu-button {
+            background: #AD88C6;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .menu-button:hover {
+            background: #9467B3;
+        }
+
+        .menu-items {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-items a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+            transition: background 0.3s ease;
+        }
+
+        .menu-items a:hover {
+            background: #f0f0f0;
+        }
+
+        .menu-container.open .menu-items {
+            display: block;
+        }
+
+
+        /* HERO SECTION */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(173, 136, 198, 0.7), rgba(173, 136, 198, 0.7)), url('tu-imagen-de-fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            height: 100vh;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .hero a {
+            text-decoration: none;
+            color: white;
+            background: #AD88C6;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .hero a:hover {
+            background: #9467B3;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: #AD88C6;
+            margin-bottom: 20px;
+        }
+
+        section p {
+            font-size: 1rem;
+            margin: 0 auto;
+            max-width: 800px;
+            color: #555;
+        }
+
+        /* FOOTER */
+        footer {
+            background:  #7469B6;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* BUTTON */
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: white;
+            background: #AD88C6;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #9467B3;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        .texto-en-la-esquina2{
+            position: absolute;
+            top: 17px;
+            left: 59px;
+            font-size: 13px;
+            background-color: rgba(0, 0, 0, 0,5);
+            color: rgb(0, 0, 0);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font: italic;
+        }
+
+
+                /* Estilo general para la sección con cuadro */
+        
+         section {
+            margin: 50px 0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        section:nth-child(odd) {
+            background: #ffffff;
+        }
+
+        section:nth-child(even) {
+            background: #f9f2fc;
+        }
+
+        section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: #AD88C6;
+            margin-bottom: 20px;
+        }
+
+        section p, ul.checklist {
+            font-size: 1rem;
+            text-align: justify;
+            color: #555;
+        }
+
+        ul.checklist {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        ul.checklist li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        ul.checklist li::before {
+            content: "✔";
+            color: green;
+            margin-right: 10px;
+        }
+
+        .divider {
+            height: 4px;
+            background: #AD88C6;
+            margin: 30px auto;
+            width: 50%;
+            border-radius: 10px;
+        }
+
+         /* Estilo para el contenedor del álbum */
+         .album-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-items: center;
+        }
+
+        /* Estilo para cada imagen en el álbum */
+        .album-item {
+            width: 100%;
+            max-width: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            height: auto;
+        }
+
+        .album-item img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .album-item:hover {
+            transform: scale(1.05);
+            height: auto;
+        }
+
+        .imagen-con-bordes {
+            border: 5px solid #333;  /* Definir el borde */
+            border-radius: 20px;      /* Bordes redondeados */
+            width: 300px;            /* Ajustar el tamaño de la imagen */
+            height: auto; 
+        }   
+
+        @keyframes show {
+            from{
+                opacity: 0;
+                scale: 50%;
+            }
+
+            to{
+                opacity: 100;
+                scale: 100%;
+            }
+        }
+
+        section{
+            view-timeline-name: --secction;
+            view-timeline-axis:  block;
+            animation-timeline: --secction;
+            animation-name: show;
+
+            animation-range: entry 25% cover 50%;
+            animation-fill-mode: both;
+        }
+
+        section:hover{
+    transform: scale(1.06);
+    transition: 0.5s ease;
+    /*overflow: hidden;*//*para poner imagenes atras del los cuadros*/
+}
+
+.social-icons {
+
+    text-align: center;
+
+}
+
+.social-icons a {
+    text-decoration: none; /* Eliminar subrayado */
+    color: #ffffff; /* Color inicial de los enlaces (negro) */
+    font-size: 15px; /* Tamaño de fuente */
+    transition: color 0.3s ease; /* Transición suave cuando cambia el color */
+}
+
+.social-icons a:hover {
+    color: #000000; /* Color blanco cuando el mouse pasa sobre el enlace */
+}
+
+.social-icons a:active {
+    color: #000000; /* Color blanco cuando se hace clic */
+}
+.wave-container {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(135deg, #6A11CB, #2575FC);
+            overflow: hidden;
+        }
+
+        /* Capa superior con onda */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: #ffffff;
+            clip-path: polygon(0 70%, 25% 80%, 50% 70%, 75% 80%, 100% 70%, 100% 100%, 0% 100%);
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="navbar">
+            <a href="Psicologa Veronica Zelaya - Autismo y Porblemas Conductuales.html"> <img src="logo de clinica-Photoroom.ico" alt="logo"></a>
+            <div>
+                <h1 class="texto-en-la-esquina2">Psicologa Veronica Zelaya - Autismo y Porblemas Conductuales "Sobre mi"</h1>
+            </div>
+            <div class="menu-container">
+                <button class="menu-button">Menú</button>
+                <div class="menu-items">
+                    <a href="Psicologa Veronica Zelaya - Autismo y Porblemas Conductuales.html">Inicio</a>
+                    <a href="sobre mi.html">Sobre mí</a>
+                    <a href="contactanos.html">Contacto</a>
+                    <a href="Servicio.html">Servicios</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <div>
+        <h1>‎ </h1>
+    </div>
+
+    <!-- SECTIONS -->
+     <div>
+        ‎ 
+     </div>
+
+<section>
+    <h2>📌 Sobre Mi</h2>
+    <p>Soy especialista en Psicología Clínica con amplia experiencia en la evaluación, intervención y atención de casos clínicos, enfocándome especialmente en el Trastorno del Espectro Autista (TEA). 
+        Trabajo para brindar herramientas prácticas, apoyo emocional y soluciones integrales a familias, 
+        profesionales y comunidades que necesitan acompañamiento especializado.</p>
+</section>
+<div class="divider"></div>
+
+
+<section>
+    <h2>🧠 Objetivo Profesional </h2>
+    <p>Contribuir al bienestar integral de las personas a través de la evaluación, intervención y 
+        prevención en el ámbito de la salud mental, ofreciendo atención clínica basada en la evidencia 
+        científica, promoviendo el desarrollo emocional, cognitivo y social, y 
+        fomentando estrategias de afrontamiento que mejoren la calidad de vida tanto de los individuos como de sus familias.</p>
+</section>
+
+<div class="divider"></div>
+
+<section>
+    <h2>📚 Mi Formación Profesional </h2>
+        <ul class="checklist">
+        <li>Maestría en Psicología Clínica – Universidad Nacional Autónoma de Honduras (UNAH).</li> 
+     <LI>Pasantías Internacionales en Autismo – Universidad Andrés Bello (Chile) y Universidad de Burgos (España).</LI>
+       <LI>Certificación en Educación Inclusiva para alumnado con Autismo – Autismo España y Fundación GMP (2024).</LI>
+      <LI>Primera Ayuda Psicológica (PAP) en emergencias – Organización Panamericana de la Salud (OPS).</LI>
+        <LI> Prevención de la Autolesión y el Suicidio – OPS/OMS.</LI>
+      </ul>
+</section>
+
+<div class="divider"></div>
+
+<section>
+
+    <h2 style="text-align: center; margin-top: 20px;">📸 Álbum de Fotos</h2>
+    
+        <div class="album-container">
+            <div class="album-item">
+                <img src="img/psicologa1 (2).jpg" alt="psicologa5">
+            </div>
+            <div class="album-item">
+                <img src="img/psicologa2 (2).jpg" alt="Foto 2">
+            </div>
+            <div class="album-item">
+                <img src="img/psicologa3.jpg" alt="Foto 3">
+            </div>
+            <div class="album-item">
+                <img src="img/psicologa4.jpg" alt="Foto 4">
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 Psicóloga Verónica Zelaya. Todos los derechos reservados.</p>
+        <p>¡Síguenos!</p>
+        <div class="social-icons">
+            <a href="https://facebook.com/tu-perfil" target="_blank"> <img src="img/facebook.png" alt="facebook" width="20px" height="20px"></a>
+            <a href="https://instagram.com/tu-perfil" target="_blank"><img src="img/logotipo-de-instagram.png" alt="instagram" width="20px" height="20px"></a>
+            <a href="https://twitter.com/tu-perfil" target="_blank"><img src="img/gmail.png" alt="Gmail" width="20px" height="20px"></a>
+        </div>
+
+    </footer>
+
+    <script>
+        const menuButton = document.querySelector('.menu-button');
+        const menuContainer = document.querySelector('.menu-container');
+
+        menuButton.addEventListener('click', () => {
+            menuContainer.classList.toggle('open');
+        });
+
+// Selecciona el elemento
+const section = document.querySelector('section');
+
+// Agrega el efecto de escala al hacer clic
+section.addEventListener('click', () => {
+    // Alterna la clase 'scaled' al hacer clic para mantener el tamaño aumentado
+    section.classList.toggle('scaled');
+});
+    </script>
+
+</body>
+</html>

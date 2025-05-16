@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página web básica en HTML5">
+    <title>Psicóloga Verónica Zelaya - Autismo y Problemas Conductuales</title>
+    <link rel="icon" href="logo de clinica-Photoroom.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+  
+            position: relative; /* Necesario para el pseudo-elemento */
+            overflow-x: hidden; /* Evita desplazamiento horizontal */
+        }
+
+        body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, #592e75, #e4cfee, #8c31c9);
+    background-size: 200% 200%;
+    z-index: -10;
+    animation: gradientScroll 7s ease infinite;
+    opacity: 0.8; /* Ajusta la opacidad para que no opaque el contenido */
+    mix-blend-mode: overlay; /* Combina colores con el fondo */
+}
+
+@keyframes gradientScroll {
+    10% { background-position: 10% 70%; }
+    50% { background-position: 100% 70%; }
+    100% { background-position: 0% 70%; }
+}
+
+   
+
+
+        /* NAVBAR */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #fff;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .navbar img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .menu-container {
+            position: relative;
+        }
+
+        .menu-button {
+            background: #AD88C6;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .menu-button:hover {
+            background: #9467B3;
+        }
+
+        .menu-items {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-items a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+            transition: background 0.3s ease;
+        }
+
+        .menu-items a:hover {
+            background: #f0f0f0;
+        }
+
+        .menu-container.open .menu-items {
+            display: block;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(145, 102, 173, 0.7), rgba(119, 83, 143, 0.7)), url('tu-imagen-de-fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            height: 100vh;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .hero a {
+            text-decoration: none;
+            color: white;
+            background: #AD88C6;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .hero a:hover {
+            background: #9467B3;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        section {
+            margin: 50px 0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        section:nth-child(odd) {
+            background: #ffffff;
+        }
+
+        section:nth-child(even) {
+            background: #f9f2fc;
+        }
+
+        section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: #AD88C6;
+            margin-bottom: 20px;
+        }
+
+        section p, ul.checklist {
+            font-size: 1rem;
+            text-align: justify;
+            color: #555;
+        }
+
+        ul.checklist {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        ul.checklist li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        ul.checklist li::before {
+            content: "✔";
+            color: green;
+            margin-right: 10px;
+        }
+
+        .divider {
+            height: 4px;
+            background: #AD88C6;
+            margin: 30px auto;
+            width: 50%;
+            border-radius: 10px;
+        }
+/* FOOTER */
+footer {
+            background:  #7469B6;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* BUTTON */
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: white;
+            background: #AD88C6;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #9467B3;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        .texto-en-la-esquina2{
+            position: absolute;
+            top: 17px;
+            left: 59px;
+            font-size: 13px;
+            background-color: rgba(0, 0, 0, 0,5);
+            color: rgb(0, 0, 0);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font: italic;
+        }
+
+        .social-icons {
+
+text-align: center;
+
+}
+
+.social-icons a {
+text-decoration: none; /* Eliminar subrayado */
+color: #ffffff; /* Color inicial de los enlaces (negro) */
+font-size: 15px; /* Tamaño de fuente */
+transition: color 0.3s ease; /* Transición suave cuando cambia el color */
+}
+
+.social-icons a:hover {
+color: #000000; /* Color blanco cuando el mouse pasa sobre el enlace */
+}
+
+.social-icons a:active {
+color: #000000; /* Color blanco cuando se hace clic */
+}
+
+.img-link{
+margin: 10px;
+}
+
+.faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #8b70db;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #4A32A3;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+            padding: 0 20px;
+            background: #f9f9f9;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .faq-answer.open {
+            max-height: 300px; /* Ajusta según el contenido */
+            padding: 15px 20px;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon.open {
+            transform: rotate(45deg);
+        }
+
+        /* BUTTON TO RETURN TO TOP */
+        .back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #9883d8;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            background: #432b99;
+            transform: scale(1.1);
+        }
+
+        
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="navbar">
+            <a href="Psicologa Veronica Zelaya - Autismo y Porblemas Conductuales.html"> <img src="logo de clinica-Photoroom.ico" alt="logo"></a>
+            <div>
+                <h1 class="texto-en-la-esquina2">Psicologa Veronica Zelaya - Autismo y Porblemas Conductuales "Servicio"</h1> 
+            </div>  
+            <div class="menu-container">
+                <button class="menu-button">Menú</button>
+                <div class="menu-items">
+                    <a href="Psicologa Veronica Zelaya - Autismo y Porblemas Conductuales.html">Inicio</a>
+                    <a href="sobre mi.html">Sobre mí</a>
+                    <a href="contactanos.html">Contacto</a>
+                    <a href="Servicio.html">Servicios</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+
+     <div><h1>h</h1><p>hola</p></div>
+     <div class="divider"></div>
+    <!-- SECTIONS -->
+    <SECtion><h2>💡 ¿Cómo puedo ayudarte?</h2>
+    <p><li>Intervención en casos de TEA y salud mental.</li>
+        <li>Evaluaciones y Prevención ámbito de salud mental</li>
+        <li>Capacitación a docentes y profesionales.</li>
+        
+       <li> Asesoramiento y acompañamiento para familias que enfrentan 
+        desafíos en el desarrollo y aprendizaje de sus hijos.</li></p>
+    </SECtion>
+
+    <div class="divider"></div>
+    <section>
+
+    <h2>Preguntas Frecuentes</h22>
+
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">
+                ¿Cuál es tu especialidad?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                Me especializo en el tratamiento de trastornos del espectro autista y problemas conductuales, brindando terapias personalizadas.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                ¿Cómo puedo contactarte?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                Puedes contactarme a través del formulario en la página de contacto o por WhatsApp al número indicado en la sección de contacto.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                ¿Ofreces consultas en línea?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                Sí, ofrezco consultas en línea a través de videollamadas. Estas consultas son tan efectivas como las presenciales.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                ¿Qué tipo de terapias ofreces?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                Ofrezco terapias cognitivas, conductuales y ocupacionales según las necesidades del paciente.
+            </div>
+        </div>
+    </div>
+    <button class="back-to-top" id="backToTop">↑</button>
+</section>
+
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 Psicóloga Verónica Zelaya. Todos los derechos reservados.</p>
+        <div class="social-icons">
+            <a href="https://facebook.com/tu-perfil" target="_blank"> <img src="img/facebook.png" alt="facebook" width="20px" height="20px"></a>
+            <a href="https://instagram.com/tu-perfil" target="_blank"><img src="img/logotipo-de-instagram.png" alt="instagram" width="20px" height="20px"></a>
+            <a href="https://twitter.com/tu-perfil" target="_blank"><img src="img/gmail.png" alt="Gmail" width="20px" height="20px"></a>
+        </div>
+    </footer>
+
+    <script>
+        const menuButton = document.querySelector('.menu-button');
+        const menuContainer = document.querySelector('.menu-container');
+
+        menuButton.addEventListener('click', () => {
+            menuContainer.classList.toggle('open');
+        });
+
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('.faq-icon');
+
+                answer.classList.toggle('open');
+                icon.classList.toggle('open');
+            });
+        });
+
+        // Script para botón de regresar al inicio
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
